@@ -10,34 +10,35 @@ const DigitalClockDisplay = ({ timers }: any) => {
         seconds: timers.get('second')
     });
 
-
     // dayjs.extend(objectSupport)
     // const formattedValue = dayjs(selectedTime).format('HH:mm:ss');
 
     dayjs.extend(duration)
     const totalDuration = dayjs.duration(timeUpdate);
-    // console.log(totalDuration)
     let newTotalAfterSubraction = totalDuration;
-    console.log(newTotalAfterSubraction);
 
+    useEffect(() => {
+        let timerIntervalId = setInterval(() => {
+            if (newTotalAfterSubraction.asSeconds() > 0) {
+                let reduceTime = newTotalAfterSubraction.subtract({ seconds: 1 });
+                setTimeUpdate(({
+                    hours: reduceTime.get('hour'),
+                    minutes: reduceTime.get('minute'),
+                    seconds: reduceTime.get('second')
+                }))
+                newTotalAfterSubraction = reduceTime;
+            } else if (newTotalAfterSubraction.asSeconds() === 0) {
+                alert("Times's Up")
+            }
+        }, 1000)
 
-    let timerIntervalId = setInterval(() => {
-        if (newTotalAfterSubraction.asSeconds() > 0) {
-            let reduceTime = newTotalAfterSubraction.subtract({ seconds: 1 });
-            setTimeUpdate(({
-                hours: reduceTime.get('hour'),
-                minutes: reduceTime.get('minute'),
-                seconds: reduceTime.get('second')
-            }))
-            newTotalAfterSubraction = reduceTime;
-        } else {
-            alert("Time's Up")
+        return () => {
             clearInterval(timerIntervalId);
-
         }
-    }, 1000)
 
-    console.log(timeUpdate)
+    }, [timeUpdate.seconds])
+
+    //  console.log(timeUpdate)
 
     return (<>
         <div>
