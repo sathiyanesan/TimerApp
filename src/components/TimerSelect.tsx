@@ -10,8 +10,6 @@ import { TimeView } from "@mui/x-date-pickers/models/views";
 import DigitalClockDisplay from "./DigitalClockDisplay";
 
 
-
-
 const TimerSelect = () => {
     const [timerValue, setTimerValue] = React.useState<dayjs.Dayjs | null>(dayjs('2022-04-17T00:00:00'));
     const [openClock, setOpenClock] = useState(false);
@@ -30,6 +28,7 @@ const TimerSelect = () => {
                                     onChange={(newValue) => { setTimerValue(newValue) }}
                                     views={['hours', 'minutes', 'seconds']}
                                     ampm={false}
+                                    timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
                                 />
                             </DemoItem>
                         </DemoContainer>
