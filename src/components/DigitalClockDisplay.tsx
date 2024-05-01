@@ -15,6 +15,7 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
         seconds: timers.get('second')
     });
     const [showPlayPause, setShowPlayPause] = useState(true);
+    const [pause, setPause] = useState(false);
 
     const totalTimeSelected = {
         hours: timers.get('hour'),
@@ -41,14 +42,16 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
 
     useEffect(() => {
         let timerIntervalId = setInterval(() => {
-            if (newTotalAfterSubraction.asSeconds() > 0) {
-                let reduceTime = newTotalAfterSubraction.subtract({ seconds: 1 });
-                setTimeUpdate(({
-                    hours: reduceTime.get('hour'),
-                    minutes: reduceTime.get('minute'),
-                    seconds: reduceTime.get('second')
-                }))
-                newTotalAfterSubraction = reduceTime;
+            if (!pause) {
+                if (newTotalAfterSubraction.asSeconds() > 0) {
+                    let reduceTime = newTotalAfterSubraction.subtract({ seconds: 1 });
+                    setTimeUpdate(({
+                        hours: reduceTime.get('hour'),
+                        minutes: reduceTime.get('minute'),
+                        seconds: reduceTime.get('second')
+                    }))
+                    newTotalAfterSubraction = reduceTime;
+                }
             }
         }, 1000)
 
@@ -56,9 +59,12 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
             clearInterval(timerIntervalId);
         }
 
-    }, [timeUpdate.seconds])
+    }, [timeUpdate.seconds, pause])
 
     //  console.log(timeUpdate)
+    const handleTogglePause = () => {
+        setPause(!pause)
+    }
 
     return (<>
         <div>
@@ -74,11 +80,11 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
                     {showPlayPause ?
                         <PauseCircleIcon color="primary"
                             style={{ width: "50px", height: "50px" }}
-                            onClick={() => { setShowPlayPause(false) }} />
+                            onClick={() => { setShowPlayPause(false); handleTogglePause() }} />
                         :
                         <PlayCircleIcon color="primary"
                             style={{ width: "50px", height: "50px" }}
-                            onClick={() => { setShowPlayPause(true) }} />
+                            onClick={() => { setShowPlayPause(true); handleTogglePause() }} />
                     }
                     <StopCircleIcon color="error"
                         style={{ width: "50px", height: "50px" }}
