@@ -2,13 +2,35 @@ import dayjs, { Dayjs } from "dayjs";
 import { ReactNode, useEffect, useState } from "react";
 import objectSupport from "dayjs/plugin/objectSupport";
 import duration from "dayjs/plugin/duration";
+import Alert from '@mui/material/Alert';
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import StopCircleIcon from '@mui/icons-material/StopCircle';
 
-const DigitalClockDisplay = ({ timers }: any) => {
+
+const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
     const [timeUpdate, setTimeUpdate] = useState({
         hours: timers.get('hour'),
         minutes: timers.get('minute'),
         seconds: timers.get('second')
     });
+    const [showPlayPause, setShowPlayPause] = useState(true);
+
+    const totalTimeSelected = {
+        hours: timers.get('hour'),
+        minutes: timers.get('minute'),
+        seconds: timers.get('second')
+    }
+    const displayTotalTime = (): string => {
+        const hour = Number(totalTimeSelected.hours);
+        const minute = Number(totalTimeSelected.minutes);
+        const second = Number(totalTimeSelected.seconds);
+        const hourStr = hour !== 0 ? `${hour} hours` : ""
+        const minuteStr = minute !== 0 ? `${minute} minutes` : ""
+        const secondStr = second !== 0 ? `${second} seconds` : ""
+        return `Total ${hourStr} ${minuteStr} ${secondStr}`
+    }
+
 
     // dayjs.extend(objectSupport)
     // const formattedValue = dayjs(selectedTime).format('HH:mm:ss');
@@ -27,8 +49,6 @@ const DigitalClockDisplay = ({ timers }: any) => {
                     seconds: reduceTime.get('second')
                 }))
                 newTotalAfterSubraction = reduceTime;
-            } else if (newTotalAfterSubraction.asSeconds() === 0) {
-                alert("Times's Up")
             }
         }, 1000)
 
@@ -42,7 +62,31 @@ const DigitalClockDisplay = ({ timers }: any) => {
 
     return (<>
         <div>
-            <h1>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
+            <div>
+                {newTotalAfterSubraction.asSeconds() === 0 && <Alert severity="warning">Time's Up</Alert>}
+            </div>
+            <div>
+                <div>
+                    <h1>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
+                    <h6>{displayTotalTime()}</h6>
+                </div>
+                <div>
+                    {showPlayPause ?
+                        <PauseCircleIcon color="primary"
+                            style={{ width: "50px", height: "50px" }}
+                            onClick={() => { setShowPlayPause(false) }} />
+                        :
+                        <PlayCircleIcon color="primary"
+                            style={{ width: "50px", height: "50px" }}
+                            onClick={() => { setShowPlayPause(true) }} />
+                    }
+                    <StopCircleIcon color="error"
+                        style={{ width: "50px", height: "50px" }}
+                        onClick={() => { }} />
+                </div>
+            </div>
+
+
         </div>
     </>)
 }

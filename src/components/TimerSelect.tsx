@@ -43,7 +43,7 @@ const TimerSelect = () => {
                 </div>
             </div>
         )
-            : (<DigitalClockDisplay timers={timerValue} />)}
+            : (<DigitalClockDisplay timers={timerValue} clockDisplay={openClock} />)}
 
         </>
 
