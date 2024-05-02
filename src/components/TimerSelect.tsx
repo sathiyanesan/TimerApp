@@ -8,12 +8,16 @@ import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigita
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { TimeView } from "@mui/x-date-pickers/models/views";
 import DigitalClockDisplay from "./DigitalClockDisplay";
+import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 
-const TimerSelect = () => {
+const TimerSelect = ({ openClock, setOpenClock }: any) => {
     const [timerValue, setTimerValue] = React.useState<dayjs.Dayjs | null>(dayjs('2022-04-17T00:00:00'));
-    const [openClock, setOpenClock] = useState(false);
-
+    // const [openClock, setOpenClock] = useState(false);
+    
+    
+    const noSelection: boolean = timerValue?.get('hour') === 0 && timerValue?.get('minute') === 0 && timerValue?.get('second') === 0;
+   
     return (
         <>{!openClock ? (
             <div>
@@ -34,16 +38,19 @@ const TimerSelect = () => {
                         </DemoContainer>
                     </LocalizationProvider>
                 </div>
-                <div>
-                    <PlayCircleIcon
-                        color="primary"
-                        style={{ width: "50px", height: "50px" }}
-                        onClick={() => { setOpenClock(true) }}
-                    />
-                </div>
             </div>
         )
-            : (<DigitalClockDisplay timers={timerValue} clockDisplay={openClock} />)}
+            : (<DigitalClockDisplay timers={timerValue} openClock={openClock} setOpenClock={setOpenClock} />)}
+
+            <div>
+                {!openClock &&
+                    <PlayCircleIcon
+                        color={noSelection ? "disabled" : "primary"}
+                        style={{ width: "50px", height: "50px" }}
+                        onClick={() => { !noSelection && setOpenClock(true) }}
+                    />
+                }
+            </div>
 
         </>
 

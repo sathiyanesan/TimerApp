@@ -8,13 +8,13 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 
-const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
+const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
     const [timeUpdate, setTimeUpdate] = useState({
         hours: timers.get('hour'),
         minutes: timers.get('minute'),
         seconds: timers.get('second')
     });
-    const [showPlayPause, setShowPlayPause] = useState(true);
+
     const [pause, setPause] = useState(false);
 
     const totalTimeSelected = {
@@ -66,10 +66,17 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
         setPause(!pause)
     }
 
+    let timesUp: boolean = newTotalAfterSubraction.asSeconds() === 0;
+    timesUp &&
+        setTimeout(() => {
+            setOpenClock(false)
+        }, 1000)
+
     return (<>
         <div>
             <div>
-                {newTotalAfterSubraction.asSeconds() === 0 && <Alert severity="warning">Time's Up</Alert>}
+                {timesUp && <Alert severity="warning">Time's Up</Alert>
+                }
             </div>
             <div>
                 <div>
@@ -77,22 +84,22 @@ const DigitalClockDisplay = ({ timers, clockDisplay }: any) => {
                     <h6>{displayTotalTime()}</h6>
                 </div>
                 <div>
-                    {showPlayPause ?
-                        <PauseCircleIcon color="primary"
-                            style={{ width: "50px", height: "50px" }}
-                            onClick={() => { setShowPlayPause(false); handleTogglePause() }} />
-                        :
+                    {pause ?
                         <PlayCircleIcon color="primary"
                             style={{ width: "50px", height: "50px" }}
-                            onClick={() => { setShowPlayPause(true); handleTogglePause() }} />
+                            onClick={() => { handleTogglePause() }} />
+                        :
+                        <PauseCircleIcon color={timesUp ? "disabled" : "primary"}
+                            style={{ width: "50px", height: "50px" }}
+                            onClick={() => { !timesUp && handleTogglePause() }} />
                     }
+
                     <StopCircleIcon color="error"
                         style={{ width: "50px", height: "50px" }}
-                        onClick={() => { }} />
+                        onClick={() => { setOpenClock(false) }} />
+
                 </div>
             </div>
-
-
         </div>
     </>)
 }
