@@ -6,7 +6,8 @@ import Alert from '@mui/material/Alert';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
-
+import CircularProgress from '@mui/joy/CircularProgress';
+import Box from '@mui/joy/Box';
 
 const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
     const [timeUpdate, setTimeUpdate] = useState({
@@ -16,6 +17,7 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
     });
 
     const [pause, setPause] = useState(false);
+    const [progress, setProgress] = useState(100);
 
     const totalTimeSelected = {
         hours: timers.get('hour'),
@@ -40,6 +42,8 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
     const totalDuration = dayjs.duration(timeUpdate);
     let newTotalAfterSubraction = totalDuration;
 
+    const totalUserSelectedDuration = dayjs.duration(totalTimeSelected).asSeconds();
+
     useEffect(() => {
         let timerIntervalId = setInterval(() => {
             if (!pause) {
@@ -50,6 +54,8 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
                         minutes: reduceTime.get('minute'),
                         seconds: reduceTime.get('second')
                     }))
+
+                    setProgress(Math.round((reduceTime.asSeconds() / totalUserSelectedDuration) * 100));
                     newTotalAfterSubraction = reduceTime;
                 }
             }
@@ -66,6 +72,7 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
         setPause(!pause)
     }
 
+
     let timesUp: boolean = newTotalAfterSubraction.asSeconds() === 0;
     timesUp &&
         setTimeout(() => {
@@ -80,8 +87,15 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
             </div>
             <div>
                 <div>
-                    <h1>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
-                    <h6>{displayTotalTime()}</h6>
+                    <Box sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
+                        <CircularProgress sx={{ '--CircularProgress-size': '340px' }} determinate value={progress} >
+                            <div >
+                                <h1 style={{ fontSize: '70px' }}>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
+                                <h6 style={{ fontSize: '15px' }}>{displayTotalTime()}</h6>
+                            </div>
+
+                        </CircularProgress>
+                    </Box>
                 </div>
                 <div>
                     {pause ?
@@ -100,7 +114,7 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
 
                 </div>
             </div>
-        </div>
+        </div >
     </>)
 }
 
