@@ -16,6 +16,7 @@ const TimerAlert = ({ openAlert, setOpenAlert }: any) => {
         }, 1000)
 
         return () => {
+            audio.pause();
             clearInterval(alertInterval);
         }
     }, [openAlert])
