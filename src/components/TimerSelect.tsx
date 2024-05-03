@@ -9,7 +9,7 @@ import DigitalClockDisplay from "./DigitalClockDisplay";
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 
-const TimerSelect = ({ openClock, setOpenClock, setOpenAlert, setIsAudioPlaying }: any) => {
+const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
     const [timerValue, setTimerValue] = React.useState<dayjs.Dayjs | null>(dayjs('2022-04-17T00:00:00'));
     // const [openClock, setOpenClock] = useState(false);
 
@@ -42,7 +42,6 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert, setIsAudioPlaying 
                 timers={timerValue}
                 setOpenClock={setOpenClock}
                 setOpenAlert={setOpenAlert}
-                setIsAudioPlaying={setIsAudioPlaying}
             />)}
 
             <div>

@@ -3,14 +3,14 @@ import Alert from '@mui/material/Alert';
 import { useEffect, useState } from "react";
 
 
-const TimerAlert = ({ openAlert, setOpenAlert, isAudioPlaying, setIsAudioPlaying }: any) => {
+const TimerAlert = ({ openAlert, setOpenAlert }: any) => {
     // const [openAlert, setOpenAlert] = useState(false);
-    // const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
     let audio = new Audio('/src/assets/TimerAudios/clock-alarm-8761.mp3');
 
     useEffect(() => {
         const alertInterval = setInterval(() => {
-            if (openAlert && isAudioPlaying) {
+            if (openAlert) {
                 audio.play();
             }
         }, 1000)
@@ -18,7 +18,7 @@ const TimerAlert = ({ openAlert, setOpenAlert, isAudioPlaying, setIsAudioPlaying
         return () => {
             clearInterval(alertInterval);
         }
-    }, [openAlert, isAudioPlaying])
+    }, [openAlert])
 
 
 
@@ -28,7 +28,6 @@ const TimerAlert = ({ openAlert, setOpenAlert, isAudioPlaying, setIsAudioPlaying
                 severity="warning"
                 action={<Button color="inherit" onClick={() => {
                     setOpenAlert(false)
-                    setIsAudioPlaying(false)
                 }} size="small">OK</Button>}
             >Time's Up
             </Alert>
