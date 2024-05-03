@@ -3,21 +3,19 @@ import dayjs, { Dayjs } from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigitalClock';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import { TimeView } from "@mui/x-date-pickers/models/views";
 import DigitalClockDisplay from "./DigitalClockDisplay";
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 
-const TimerSelect = ({ openClock, setOpenClock }: any) => {
+const TimerSelect = ({ openClock, setOpenClock, setOpenAlert, setIsAudioPlaying }: any) => {
     const [timerValue, setTimerValue] = React.useState<dayjs.Dayjs | null>(dayjs('2022-04-17T00:00:00'));
     // const [openClock, setOpenClock] = useState(false);
-    
-    
+
+
     const noSelection: boolean = timerValue?.get('hour') === 0 && timerValue?.get('minute') === 0 && timerValue?.get('second') === 0;
-   
+
     return (
         <>{!openClock ? (
             <div>
@@ -40,7 +38,12 @@ const TimerSelect = ({ openClock, setOpenClock }: any) => {
                 </div>
             </div>
         )
-            : (<DigitalClockDisplay timers={timerValue} openClock={openClock} setOpenClock={setOpenClock} />)}
+            : (<DigitalClockDisplay
+                timers={timerValue}
+                setOpenClock={setOpenClock}
+                setOpenAlert={setOpenAlert}
+                setIsAudioPlaying={setIsAudioPlaying}
+            />)}
 
             <div>
                 {!openClock &&

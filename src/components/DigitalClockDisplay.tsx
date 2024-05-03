@@ -1,5 +1,5 @@
-import dayjs, { Dayjs } from "dayjs";
-import { ReactNode, useEffect, useState } from "react";
+import dayjs from "dayjs";
+import {  useEffect, useState } from "react";
 import objectSupport from "dayjs/plugin/objectSupport";
 import duration from "dayjs/plugin/duration";
 import Alert from '@mui/material/Alert';
@@ -9,7 +9,7 @@ import StopCircleIcon from '@mui/icons-material/StopCircle';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Box from '@mui/joy/Box';
 
-const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
+const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert, setIsAudioPlaying }: any) => {
     const [timeUpdate, setTimeUpdate] = useState({
         hours: timers.get('hour'),
         minutes: timers.get('minute'),
@@ -76,15 +76,17 @@ const DigitalClockDisplay = ({ timers, openClock, setOpenClock }: any) => {
     let timesUp: boolean = newTotalAfterSubraction.asSeconds() === 0;
     timesUp &&
         setTimeout(() => {
+            setOpenAlert(true);
+            setIsAudioPlaying(true)
             setOpenClock(false)
         }, 1000)
 
     return (<>
         <div>
-            <div>
+            {/* <div>
                 {timesUp && <Alert severity="warning">Time's Up</Alert>
                 }
-            </div>
+            </div> */}
             <div>
                 <div>
                     <Box sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
