@@ -89,10 +89,10 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
             <div>
                 <div>
                     <Box sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
-                        <CircularProgress sx={{ '--CircularProgress-size': '340px' }} determinate value={progress} >
+                        <CircularProgress sx={{ '--CircularProgress-size': '340px', '--CircularProgress-progressColor': "#7D7C7C" }} determinate value={progress} >
                             <div >
-                                <h1 style={{ fontSize: '70px' }}>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
-                                <h6 style={{ fontSize: '15px' }}>{displayTotalTime()}</h6>
+                                <h1 style={{ fontSize: '70px', color: "#113946" }}>{dayjs.duration(timeUpdate).format('HH:mm:ss')}</h1>
+                                <h6 style={{ fontSize: '15px', color: "#555843" }}>{displayTotalTime()}</h6>
                             </div>
 
                         </CircularProgress>
@@ -101,16 +101,43 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
                 <div>
                     {pause ?
                         <PlayCircleIcon color="primary"
-                            style={{ width: "50px", height: "50px" }}
+                            sx={{
+                                width: "70px",
+                                height: "70px",
+                                color: "#9BCF53",
+                                paddingTop: "20px",
+                                paddingRight: "30px",
+                                "&:hover": {
+                                    color: "#7A9D54"
+                                }
+                            }}
                             onClick={() => { handleTogglePause() }} />
                         :
                         <PauseCircleIcon color={timesUp ? "disabled" : "primary"}
-                            style={{ width: "50px", height: "50px" }}
+                            sx={{
+                                width: "70px",
+                                height: "70px",
+                                color: "#9BCF53",
+                                paddingTop: "20px",
+                                paddingRight: "30px",
+                                "&:hover": {
+                                    color: "#7A9D54"
+                                }
+                            }}
                             onClick={() => { !timesUp && handleTogglePause() }} />
                     }
 
-                    <StopCircleIcon color="error"
-                        style={{ width: "50px", height: "50px" }}
+                    <StopCircleIcon
+                        sx={{
+                            width: "70px",
+                            height: "70px",
+                            color: "#C70039",
+                            paddingLeft: "30px",
+                            "&:hover": {
+                                color: "#FE0000"
+                            }
+
+                        }}
                         onClick={() => { setOpenClock(false) }} />
 
                 </div>

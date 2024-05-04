@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,13 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -26,8 +27,13 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #F5E8DD;
+  text-align: center;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
 }
 
 h1 {
@@ -35,7 +41,24 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+li.MuiMenuItem-root.Mui-selected {
+  background-color: #6C5F5B;
+}
+
+li.MuiMenuItem-root.Mui-selected:hover {
+  background-color: #B3A492;
+}
+
+li.MuiMenuItem-root{
+  color: #352F44;
+}
+
+ul.MuiMenuItem-root{
+  color: #5C5470;
+}
+
+
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -65,4 +88,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
