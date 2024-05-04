@@ -113,11 +113,11 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
                             }}
                             onClick={() => { handleTogglePause() }} />
                         :
-                        <PauseCircleIcon color={timesUp ? "disabled" : "primary"}
+                        <PauseCircleIcon
                             sx={{
                                 width: "70px",
                                 height: "70px",
-                                color: "#9BCF53",
+                                color: timesUp ? "#C8AE7D" : "#9BCF53",
                                 paddingTop: "20px",
                                 paddingRight: "30px",
                                 "&:hover": {

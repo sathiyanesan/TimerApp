@@ -43,6 +43,7 @@ h1 {
 
 li.MuiMenuItem-root.Mui-selected {
   background-color: #6C5F5B;
+  width: auto;
 }
 
 li.MuiMenuItem-root.Mui-selected:hover {
@@ -51,10 +52,23 @@ li.MuiMenuItem-root.Mui-selected:hover {
 
 li.MuiMenuItem-root{
   color: #352F44;
+  font-size: 100px;
+  padding: 40px;
+  
 }
 
 ul.MuiMenuItem-root{
   color: #5C5470;
+  
+}
+
+ul.MuiMultiSectionDigitalClockSection-root {
+  width: 200px ;
+  text-align: center;
+  font-size: "large";
+  padding: 40px;
+  overflow: hidden;
+ 
 }
 
 

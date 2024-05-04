@@ -31,13 +31,7 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
                                     views={['hours', 'minutes', 'seconds']}
                                     ampm={false}
                                     timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
-                                    sx={{
-
-                                        // "&:selected": {
-                                        //     bgcolor: "#6C5F5B"
-                                        // }
-                                        // color :"#6C5F5B"
-                                    }}
+                                    
                                 />
                             </DemoItem>
                         </DemoContainer>
@@ -54,14 +48,13 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
             <div>
                 {!openClock &&
                     <PlayCircleIcon
-                        color={noSelection ? "disabled" : "primary"}
                         sx={{
                             width: "70px",
                             height: "70px",
-                            color: "#9BCF53",
+                            color: noSelection ? "#C8AE7D":"#9BCF53",
                             paddingTop: "20px",
-                            "&:hover":{
-                                color:"#7A9D54"
+                            "&:hover": {
+                                color: "#7A9D54"
                             }
                         }}
                         onClick={() => { !noSelection && setOpenClock(true) }}
