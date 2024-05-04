@@ -121,7 +121,7 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
                                 paddingTop: "20px",
                                 paddingRight: "30px",
                                 "&:hover": {
-                                    color: "#7A9D54"
+                                    color: timesUp ? "#C8AE7D" : "#7A9D54"
                                 }
                             }}
                             onClick={() => { !timesUp && handleTogglePause() }} />

@@ -54,7 +54,7 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
                             color: noSelection ? "#C8AE7D":"#9BCF53",
                             paddingTop: "20px",
                             "&:hover": {
-                                color: "#7A9D54"
+                                color: noSelection ? "#C8AE7D":"#7A9D54"
                             }
                         }}
                         onClick={() => { !noSelection && setOpenClock(true) }}
