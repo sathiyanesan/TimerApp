@@ -119,6 +119,17 @@ li.MuiMenuItem-root.Mui-selected {
     padding-top: 0;
     border-radius: 30px;
   }
+
+  div.MuiAlert-root {
+    margin-bottom: 80px;
+    padding: 10px;
+    box-shadow: 3px 5px 4px 5px #e2e0e0;
+  }
+
+  .MuiPaper-root {
+    width: 400px;
+    margin-left: 200px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -152,5 +163,23 @@ li.MuiMenuItem-root.Mui-selected {
 
   p.MuiTypography-root {
     font-size: "30px";
+  }
+
+  div.MuiAlert-root {
+    margin-bottom: 50px;
+    padding: 5px;
+    box-shadow: 1px 2px 3px 2px #e2e0e0;
+  }
+
+  .MuiPaper-root {
+    width: 250px;
+    margin-left: 38px;
+  }
+  .MuiAlert-message{
+    font-size: 18px;
+  }
+
+  .MuiAlert-action button{
+    font-size: 18px;
   }
 }
