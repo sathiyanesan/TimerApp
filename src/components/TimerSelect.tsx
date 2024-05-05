@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import dayjs, { Dayjs } from 'dayjs';
+import React from "react";
+import dayjs from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigitalClock';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import DigitalClockDisplay from "./DigitalClockDisplay";
-import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 
 const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {

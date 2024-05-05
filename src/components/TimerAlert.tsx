@@ -1,6 +1,6 @@
-import { AlertTitle, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Alert from '@mui/material/Alert';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 
 const TimerAlert = ({ openAlert, setOpenAlert }: any) => {
