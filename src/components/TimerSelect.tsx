@@ -24,14 +24,13 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
                         <DemoContainer
                             components={['MobileTimePicker', 'MultiSectionDigitalClock']}
                         >
-                            <DemoItem label="Select Time">
+                            <DemoItem>
                                 <MultiSectionDigitalClock
                                     value={timerValue}
                                     onChange={(newValue) => { setTimerValue(newValue) }}
                                     views={['hours', 'minutes', 'seconds']}
                                     ampm={false}
                                     timeSteps={{ hours: 1, minutes: 1, seconds: 1 }}
-                                    
                                 />
                             </DemoItem>
                         </DemoContainer>
@@ -51,10 +50,10 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
                         sx={{
                             width: "70px",
                             height: "70px",
-                            color: noSelection ? "#C8AE7D":"#9BCF53",
+                            color: noSelection ? "#C8AE7D" : "#9BCF53",
                             paddingTop: "20px",
                             "&:hover": {
-                                color: noSelection ? "#C8AE7D":"#7A9D54"
+                                color: noSelection ? "#C8AE7D" : "#7A9D54"
                             }
                         }}
                         onClick={() => { !noSelection && setOpenClock(true) }}

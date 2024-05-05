@@ -78,7 +78,7 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
         setTimeout(() => {
             setOpenAlert(true);
             setOpenClock(false)
-        }, 1000)
+        }, 500)
 
     return (<>
         <div>

@@ -41,35 +41,8 @@ h1 {
   line-height: 1.1;
 }
 
-li.MuiMenuItem-root.Mui-selected {
-  background-color: #6C5F5B;
-  width: auto;
-}
 
-li.MuiMenuItem-root.Mui-selected:hover {
-  background-color: #B3A492;
-}
 
-li.MuiMenuItem-root{
-  color: #352F44;
-  font-size: 100px;
-  padding: 40px;
-  
-}
-
-ul.MuiMenuItem-root{
-  color: #5C5470;
-  
-}
-
-ul.MuiMultiSectionDigitalClockSection-root {
-  width: 200px ;
-  text-align: center;
-  font-size: "large";
-  padding: 40px;
-  overflow: hidden;
- 
-}
 
 
 /* button {
@@ -103,3 +76,81 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+ul.MuiMenuItem-root {
+  color: #5C5470;
+
+}
+
+li.MuiMenuItem-root.Mui-selected:hover {
+  background-color: #B3A492;
+}
+
+li.MuiMenuItem-root.Mui-selected {
+  background-color: #6C5F5B;
+  width: auto;
+}
+
+
+@media only screen and (min-width: 768px) {
+  li.MuiMenuItem-root.Mui-selected {
+    border-radius: 30px;
+  }
+
+  li.MuiMenuItem-root {
+    color: #352F44;
+    font-size: 100px;
+    padding: 40px;
+
+  }
+
+
+  ul.MuiMultiSectionDigitalClockSection-root {
+    width: 200px;
+    text-align: center;
+    font-size: "large";
+    padding: 40px;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  div.MuiStack-root {
+    box-shadow: 5px 10px 8px 10px #888888;
+    padding-top: 0;
+    border-radius: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  li.MuiMenuItem-root {
+    color: #352F44;
+    font-size: 25px;
+    padding: 5px;
+
+  }
+
+  ul.MuiMultiSectionDigitalClockSection-root {
+    width: 70px;
+    text-align: center;
+    font-size: "small";
+    padding: 20px;
+    margin-top: 10px;
+
+    /* overflow: hidden; */
+
+  }
+
+  div.MuiStack-root {
+    box-shadow: 3px 5px 4px 5px #888888;
+    padding-top: 0;
+    border-radius: 8px;
+  }
+
+  li.MuiMenuItem-root.Mui-selected {
+    border-radius: 8px;
+  }
+
+  p.MuiTypography-root {
+    font-size: "30px";
+  }
+}
