@@ -86,6 +86,9 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
                 {timesUp && <Alert severity="warning">Time's Up</Alert>
                 }
             </div> */}
+            <div className="app-title">
+                <p className="title-text">"Every Second Counts: Stay Excited with Our Countdown App!"</p>
+            </div>
             <div>
                 <div>
                     <Box sx={{ alignItems: 'center', flexWrap: 'wrap' }}>

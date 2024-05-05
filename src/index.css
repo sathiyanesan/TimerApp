@@ -106,7 +106,7 @@ li.MuiMenuItem-root.Mui-selected {
 
 
   ul.MuiMultiSectionDigitalClockSection-root {
-    width: 200px;
+    width: 250px;
     text-align: center;
     font-size: "large";
     padding: 40px;
@@ -121,7 +121,8 @@ li.MuiMenuItem-root.Mui-selected {
   }
 
   div.MuiAlert-root {
-    margin-bottom: 80px;
+    margin-top: 20px;
+    margin-bottom: 50px;
     padding: 10px;
     box-shadow: 3px 5px 4px 5px #e2e0e0;
   }
@@ -129,6 +130,16 @@ li.MuiMenuItem-root.Mui-selected {
   .MuiPaper-root {
     width: 400px;
     margin-left: 200px;
+  }
+
+  .app-title{
+    padding: 50px;
+  }
+  .title-text{
+    font-size: 25px;
+    font-weight: 800;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #A79277;
   }
 }
 
@@ -166,20 +177,33 @@ li.MuiMenuItem-root.Mui-selected {
   }
 
   div.MuiAlert-root {
-    margin-bottom: 50px;
+    /* margin-bottom: 40px; */
     padding: 5px;
     box-shadow: 1px 2px 3px 2px #e2e0e0;
+    margin-top: 10px;
   }
 
   .MuiPaper-root {
     width: 250px;
-    margin-left: 38px;
+    margin-left: 45px;
+    margin-bottom: 35px;
+    
   }
   .MuiAlert-message{
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .MuiAlert-action button{
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .app-title{
+    padding: 20px;
+  }
+  .title-text{
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #A79277;
   }
 }

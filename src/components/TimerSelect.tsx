@@ -19,6 +19,9 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
     return (
         <>{!openClock ? (
             <div>
+                <div className="app-title">
+                    <p className="title-text">"Countdown to Your Dreams: Let Our App Keep You on Track!"</p>
+                </div>
                 <div>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer
