@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const TimerAlert = ({ openAlert, setOpenAlert }: any) => {
     // const [openAlert, setOpenAlert] = useState(false);
 
-    let audio = new Audio('/src/assets/TimerAudios/clock-alarm-8761.mp3');
+    let audio = new Audio('/clock-alarm-8761.mp3');
 
     useEffect(() => {
         const alertInterval = setInterval(() => {
