@@ -38,23 +38,36 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
 
     dayjs.extend(duration)
     const totalDuration = dayjs.duration(timeUpdate);
-    let newTotalAfterSubraction = totalDuration;
-
     const totalUserSelectedDuration = dayjs.duration(totalTimeSelected).asSeconds();
 
     useEffect(() => {
+        let lastTime = Date.now();
+        let currentTime = Date.now()
+        let remainingDuration = dayjs.duration({
+            hours: timeUpdate.hours,
+            minutes: timeUpdate.minutes,
+            seconds: timeUpdate.seconds
+        });
         let timerIntervalId = setInterval(() => {
             if (!pause) {
-                if (newTotalAfterSubraction.asSeconds() > 0) {
-                    let reduceTime = newTotalAfterSubraction.subtract({ seconds: 1 });
-                    setTimeUpdate(({
-                        hours: reduceTime.get('hour'),
-                        minutes: reduceTime.get('minute'),
-                        seconds: reduceTime.get('second')
-                    }))
+                if (remainingDuration.asSeconds() > 0) {
+                    currentTime = Date.now()
+                    let elapsedTime = Math.abs((currentTime - lastTime) / 1000)
+                    lastTime = currentTime;
+                    remainingDuration = remainingDuration.subtract({ seconds: elapsedTime });
 
-                    setProgress(Math.round((reduceTime.asSeconds() / totalUserSelectedDuration) * 100));
-                    newTotalAfterSubraction = reduceTime;
+                    if (remainingDuration.asSeconds() <= 0) {
+                        remainingDuration = dayjs.duration(0);
+                        clearInterval(timerIntervalId);
+                    }
+
+                    const hours = remainingDuration.get('hour')
+                    const minutes = remainingDuration.get('minute')
+                    const seconds = remainingDuration.get('second')
+                    const progressValue = Math.round((remainingDuration.asSeconds() / totalUserSelectedDuration) * 100)
+
+                    setTimeUpdate({ hours, minutes, seconds })
+                    setProgress(progressValue);
                 }
             }
         }, 1000)
@@ -63,7 +76,7 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
             clearInterval(timerIntervalId);
         }
 
-    }, [timeUpdate.seconds, pause])
+    }, [totalUserSelectedDuration, pause])
 
     //  console.log(timeUpdate)
     const handleTogglePause = () => {
@@ -71,7 +84,7 @@ const DigitalClockDisplay = ({ timers, setOpenClock, setOpenAlert }: any) => {
     }
 
 
-    let timesUp: boolean = newTotalAfterSubraction.asSeconds() === 0;
+    let timesUp: boolean = totalDuration.asSeconds() === 0;
     timesUp &&
         setTimeout(() => {
             setOpenAlert(true);
