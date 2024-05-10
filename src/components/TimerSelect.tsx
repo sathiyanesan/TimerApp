@@ -21,13 +21,13 @@ const TimerSelect = ({ openClock, setOpenClock, setOpenAlert }: any) => {
         <>
             {!openClock ? (
                 <div>
-                    {<Snackbar
+                    <Snackbar
                         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                         open={openMsg}
                         autoHideDuration={3000}
                         onClose={() => { setOpenMsg(false) }}
                         message="Please select time (hours or minutes or seconds)."
-                    />}
+                    />
                     <div className="app-title">
                         <p className="title-text">"Countdown to Your Dreams: Let Our App Keep You on Track!"</p>
                     </div>
