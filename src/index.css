@@ -81,6 +81,12 @@ li.MuiMenuItem-root.Mui-selected {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #A79277;
   }
+
+  .MuiSnackbarContent-root {
+    width: auto;
+    margin-left: 30px;
+
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -143,5 +149,15 @@ li.MuiMenuItem-root.Mui-selected {
     font-weight: 500;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #A79277;
+  }
+
+  .MuiSnackbarContent-root {
+    width: auto;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .MuiSnackbarContent-message {
+    font-size: 18px;
   }
 }
